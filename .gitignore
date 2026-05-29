@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+
+# Build artifacts from packaging skills for Claude Desktop upload
+*.zip
+
+# The personal calibration overlay (caitlin-voice) lives in ~/.claude/skills/,
+# outside this repo, and must never be committed here — it contains private
+# disclosure-sensitive specifics. This line is a reminder, not a path in-tree.

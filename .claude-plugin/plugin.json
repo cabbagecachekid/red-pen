@@ -1,0 +1,19 @@
+{
+  "name": "copy-review-skills",
+  "version": "0.1.0",
+  "description": "Three composable skills for reviewing human-facing professional copy: an AI-written check, a cringe (tone/positioning) check, and a multi-pass copy-review orchestrator that runs both.",
+  "author": {
+    "name": "Caitlin Nielson"
+  },
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "editing",
+    "copy-review",
+    "ai-detection",
+    "resume",
+    "cover-letter",
+    "portfolio",
+    "tone"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "copy-review-skills",
+  "owner": {
+    "name": "Caitlin Nielson"
+  },
+  "plugins": [
+    {
+      "name": "copy-review-skills",
+      "source": "./",
+      "description": "AI-written check, cringe check, and a multi-pass copy-review orchestrator for human-facing professional copy.",
+      "version": "0.1.0"
+    }
+  ]
+}
