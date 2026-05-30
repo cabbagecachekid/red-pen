@@ -25,25 +25,57 @@ Built to [Anthropic's skill-authoring best practices](https://platform.claude.co
 
 ## Install
 
+Skills do **not** sync between Claude Code, Claude Desktop, and the API — install on each surface you use.
+
 ### Claude Code
-Filesystem-based, auto-discovered. Either:
 
-- **As a plugin:** add this repo as a plugin marketplace and install the `copy-review-skills` plugin, **or**
-- **Manually:** copy any skill folder into `~/.claude/skills/` (global) or `<project>/.claude/skills/` (project-scoped):
-  ```bash
-  cp -r skills/ai-written-check ~/.claude/skills/
-  cp -r skills/cringe-check     ~/.claude/skills/
-  cp -r skills/copy-review      ~/.claude/skills/
-  ```
+**Option A — as a plugin (recommended, stays updated):**
 
-### Claude Desktop / claude.ai
-Each skill uploads as its own folder. Zip the folder you want and upload it under **Settings → Capabilities → Skills** (requires code execution; available on Pro, Max, Team, and Enterprise plans):
+In Claude Code, add this repo as a plugin marketplace, then install the plugin:
 
-```bash
-cd skills && zip -r ai-written-check.zip ai-written-check
+```
+/plugin marketplace add cabbagecachekid/copy-review-skills
+/plugin install copy-review-skills@copy-review-skills
 ```
 
-Upload each `.zip` separately. Skills do not sync between Claude Code, Desktop, and the API — install on each surface you use.
+To update later: `/plugin marketplace update copy-review-skills`.
+
+**Option B — manual (clone and copy):**
+
+Copy whichever skill folders you want into `~/.claude/skills/` (global) or `<project>/.claude/skills/` (project-scoped). Claude Code auto-discovers them on next launch.
+
+```bash
+git clone https://github.com/cabbagecachekid/copy-review-skills.git
+cd copy-review-skills
+cp -r skills/ai-written-check ~/.claude/skills/
+cp -r skills/cringe-check     ~/.claude/skills/
+cp -r skills/copy-review      ~/.claude/skills/
+```
+
+Verify with `/skills` — the three should appear in the list.
+
+### Claude Desktop / claude.ai
+
+Each skill uploads as its own zipped folder (requires code execution; available on Pro, Max, Team, and Enterprise plans).
+
+1. Clone the repo and zip each skill folder:
+   ```bash
+   git clone https://github.com/cabbagecachekid/copy-review-skills.git
+   cd copy-review-skills/skills
+   for s in ai-written-check cringe-check copy-review; do zip -r "$s.zip" "$s"; done
+   ```
+2. In Claude Desktop, go to **Settings → Capabilities → Skills** and upload each `.zip` separately.
+3. Start a chat and ask for a "cringe check" or "AI-written check" — the skill triggers automatically.
+
+### Using the skills
+
+Once installed, no special command is needed — just ask in plain language:
+
+- *"Run an AI-written check on this cover letter."*
+- *"Cringe check this paragraph — does it sound arrogant?"*
+- *"Do a full copy review of my resume."*
+
+`copy-review` will pull in `ai-written-check` and `cringe-check` automatically when all three are installed, and falls back to its own reference notes if they aren't.
 
 ## Repository layout
 
