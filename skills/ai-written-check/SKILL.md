@@ -7,6 +7,8 @@ description: Detects the mechanical tells that make professional prose read as A
 
 Scan human-facing prose for the mechanical patterns that signal machine authorship, and propose a concrete rewrite for each. This is a *prose* check — it looks at sentence mechanics and word choice, not at tone or positioning (that is the `cringe-check` skill).
 
+**What this is for.** This is not about hiding that AI was involved. It assumes the healthy case: you're collaborating with Claude to refine, expand, or draft your own writing. The job is to keep the result *aligned with your intent and your voice* — so the words still sound like you wrote them, not like a model smoothed them into generic copy. None of these skills are for making AI do the writing for you.
+
 ## How to run it
 
 1. Read the copy once for sense.
@@ -32,6 +34,7 @@ Never flag without a rewrite. The point is to fix the prose, not to label it.
 | **Voice-register swerve** | Flag any paragraph that opens concrete-and-human and pivots to abstract industry-speak. | Stay in one register; the swerve is the tell. |
 | **Builder/startup subculture slang** ("vibe coding", "shipping", "hot takes", "cracked at") | Flag each in formal copy. | A neutral substance-equivalent term. |
 | **Unfalsifiable universal claims** ("everyone", "all", "every", "universally", "across the board") | Question each. | Scope it to the specific people/context actually observed. "Affects everyone" is itself an AI-pitch tell. |
+| **Generic placeholder / template copy** (fill-in-the-blank headers, "Welcome to my portfolio", "I'm passionate about X", boilerplate section intros that could belong to anyone) | Flag each. | Replace with something specific and true to the author — their actual words, project, or point of view. Filler that "isn't the vibe" is a tell that the line was generated, not authored. |
 
 ## Why these matter
 
@@ -42,5 +45,5 @@ For the full catalog with worked before/after examples and edge cases, see `refe
 ## What this skill does NOT do
 
 - It does not judge tone, arrogance, or positioning — use `cringe-check`.
-- It does not verify facts or claims — that belongs to a full review (`copy-review`).
+- It does not verify facts or claims — that belongs to a full review (`full-review`).
 - It does not rewrite wholesale. It flags and proposes; the author decides.

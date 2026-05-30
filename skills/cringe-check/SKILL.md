@@ -44,5 +44,5 @@ For worked examples and the reasoning behind each dimension, see `references/POS
 ## What this skill does NOT do
 
 - It does not check sentence mechanics or AI tells — use `ai-written-check`.
-- It does not verify facts — that belongs to `copy-review`.
+- It does not verify facts — that belongs to `full-review`.
 - It never inflates. When the honest version is smaller, it says so.

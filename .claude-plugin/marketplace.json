@@ -1,13 +1,13 @@
 {
-  "name": "copy-review-skills",
+  "name": "red-pen",
   "owner": {
     "name": "Caitlin Nielson"
   },
   "plugins": [
     {
-      "name": "copy-review-skills",
+      "name": "red-pen",
       "source": "./",
-      "description": "AI-written check, cringe check, and a multi-pass copy-review orchestrator for human-facing professional copy.",
+      "description": "An AI-written check, a cringe check, and a full-review orchestrator that keep AI-assisted writing honest and in your voice.",
       "version": "0.1.0"
     }
   ]
