@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f1e8">
+
+<title>red-pen: keep AI-assisted writing honest and yours</title>
+<meta name="description" content="Three composable Claude skills that keep AI-assisted writing honest and yours: an AI-written check, a cringe check, and a full-review orchestrator with an anti-inflation pass.">
+
+<!-- favicon: inline SVG, no separate file. paper square, red pen stroke. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f5f1e8'/%3E%3Cpath d='M6 25 L24 7' stroke='%23d21f0f' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<!-- social card. summary card (no og image yet); URLs assume GitHub Pages from docs/. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="red-pen: keep AI-assisted writing honest and yours">
+<meta property="og:description" content="Three composable Claude skills that catch machine tells, cocky positioning, and quietly inflated claims before your copy goes out.">
+<meta property="og:url" content="https://cabbagecachekid.github.io/red-pen/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="red-pen: keep AI-assisted writing honest and yours">
+<meta name="twitter:description" content="Three composable Claude skills that catch machine tells, cocky positioning, and quietly inflated claims before your copy goes out.">
+
+<style>
+  /* ---- palette: red-pen manuscript (warm paper, black ink, deep red for the
+         pen marks). deep red #d21f0f is chosen for contrast: it passes AA as
+         text on paper (4.72:1), where a bright red would fail. accent red is
+         used as marks/fills, body text stays ink/muted. ---- */
+  :root {
+    --paper:   #f5f1e8;  /* warm manuscript ground */
+    --paper-2: #fffdf8;  /* fresh-paper card surface */
+    --ink:     #1a1a17;  /* near-black draft text + 3px borders */
+    --muted:   #5c574e;  /* quiet text (AA on paper) */
+    --red:     #d21f0f;  /* the red pen: marks, underlines, fills */
+    --red-deep:#a81508;  /* darker red for small text / hover */
+    --border:  3px solid var(--ink);
+    --shadow:  6px 6px 0 var(--red);
+    --mono: "Space Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --display: "Bebas Neue", "Anton", "Arial Narrow", Impact, system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+  }
+
+  main { max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  section { padding: 4rem 0; border-bottom: var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ---- type ---- */
+  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 0.98;
+               text-transform: uppercase; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(2rem, 6.5vw, 3rem); margin-bottom: 1.1rem; }
+  p { max-width: 40rem; }
+  p + p { margin-top: 1rem; }
+
+  a { color: var(--ink); font-weight: 700;
+      text-decoration: underline; text-decoration-thickness: 3px;
+      text-decoration-color: var(--red); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--red-deep); }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--red); outline-offset: 3px;
+  }
+
+  /* section eyebrow: a red-pen margin tab */
+  .eyebrow {
+    display: inline-block; font-family: var(--mono); font-weight: 700;
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--red); color: var(--paper-2);
+    padding: 0.28rem 0.6rem; margin-bottom: 1.2rem;
+  }
+
+  /* ---- hero ---- */
+  .hero { padding: 3.5rem 0 3.5rem; border-bottom: var(--border); }
+  .wordmark {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.06em; margin-bottom: 2rem;
+  }
+  .wordmark::before {
+    content: ""; width: 0.9rem; height: 0.9rem;
+    background: var(--red); border: 2px solid var(--ink);
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(2.6rem, 10vw, 5rem); line-height: 0.94;
+    max-width: 16ch; margin-bottom: 1.6rem;
+  }
+  /* the signature: a hand-drawn red-pen wavy underline on the payload */
+  .hero h1 mark {
+    background: none; color: var(--ink);
+    text-decoration: underline wavy var(--red);
+    text-decoration-thickness: 3px; text-underline-offset: 8px;
+  }
+  .lede { font-size: 1.1rem; max-width: 36rem; color: var(--muted); }
+  .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  .gh-link { font-size: 0.95rem; }
+
+  /* command blocks: the paste-able artifact, always mono, always copyable */
+  .cmd {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--paper-2); border: var(--border); box-shadow: var(--shadow);
+    padding: 0.75rem 0.9rem;
+    font-family: var(--mono); font-size: 0.84rem;
+    max-width: 100%;
+  }
+  .cmd code { min-width: 0; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; scrollbar-color: var(--muted) transparent; }
+  .cmd code::-webkit-scrollbar { height: 4px; }
+  .cmd code::-webkit-scrollbar-thumb { background: var(--muted); }
+  .cmd code::-webkit-scrollbar-track { background: transparent; }
+  .cmd--prose code { white-space: normal; overflow-x: visible; line-height: 1.5; }
+  .cmd button {
+    flex-shrink: 0; margin-left: auto;
+    background: transparent; border: 2px solid var(--ink);
+    color: var(--ink); font-family: var(--mono); font-weight: 700; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 0.3rem 0.65rem; cursor: pointer;
+  }
+  .cmd button:hover { background: var(--ink); color: var(--paper-2); }
+  .cmd button[data-state="ok"] { background: var(--red); border-color: var(--red); color: var(--paper-2); }
+
+  /* the anti-inflation demo: a live red-pen correction */
+  .demo {
+    font-family: var(--mono); font-size: 1rem; margin-top: 1.4rem;
+    background: var(--paper-2); border: 2px solid var(--ink); border-left: 8px solid var(--red);
+    padding: 0.8rem 1rem; max-width: 40rem;
+  }
+  .demo s { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; color: var(--ink); }
+  .demo .fix { color: var(--red); font-weight: 700; }
+  .demo .fix::before { content: "\2192\00a0"; } /* red arrow */
+
+  /* ---- workflow card: the six-pass review ---- */
+  .flow {
+    background: var(--paper-2); border: var(--border); box-shadow: var(--shadow);
+    padding: 1.6rem 1.6rem 1.5rem; margin-top: 1.6rem;
+  }
+  .flow h3 { font-size: 1.7rem; margin-bottom: 0.4rem; }
+  .flow .promise { font-size: 0.98rem; margin-bottom: 1.3rem; max-width: 42rem; color: var(--muted); }
+
+  /* the review rail: ink spine, proofreader circle nodes, filled = human gate */
+  .rail { list-style: none; position: relative; margin: 0 0 1.3rem; padding-left: 1.9rem; }
+  .rail::before {
+    content: ""; position: absolute; left: 0.4rem; top: 0.6rem; bottom: 0.6rem;
+    width: 3px; background: var(--ink);
+  }
+  .rail li { position: relative; padding: 0.4rem 0; font-size: 0.96rem; }
+  .rail li::before {
+    content: ""; position: absolute; left: -1.6rem; top: 0.72rem;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--paper-2); border: 3px solid var(--red);
+  }
+  .rail li.gate::before { background: var(--red); }
+  .rail li.gate { font-weight: 700; }
+  .rail .skill {
+    font-family: var(--mono); font-weight: 700; font-size: 0.85rem;
+    background: var(--ink); color: var(--paper-2); padding: 0.05rem 0.35rem;
+  }
+  .rail .does { display: inline; }
+
+  .flow .why {
+    font-size: 0.9rem; color: var(--muted); background: var(--paper);
+    border: 2px solid var(--ink); border-left: 8px solid var(--red);
+    padding: 0.75rem 0.9rem; margin-bottom: 1.3rem; max-width: 42rem;
+  }
+  .flow .say-label {
+    display: inline-block; font-family: var(--mono); font-weight: 700;
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--red); color: var(--paper-2); padding: 0.22rem 0.5rem; margin-bottom: 0.6rem;
+  }
+
+  /* ---- skill grid ---- */
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.6rem; }
+  .skill-card { background: var(--paper-2); border: var(--border); box-shadow: var(--shadow); padding: 1.2rem 1.25rem; }
+  .skill-card.lead { grid-column: 1 / -1; }
+  .skill-card h3 {
+    display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+    text-transform: none; letter-spacing: 0;
+    background: var(--ink); color: var(--paper-2);
+    padding: 0.1rem 0.4rem; margin-bottom: 0.7rem;
+  }
+  .skill-card p { font-size: 0.9rem; color: var(--muted); }
+  .skill-card .say { display: block; margin-top: 0.7rem; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+
+  /* ---- ground rules ---- */
+  .rules { list-style: none; margin-top: 1.4rem; border-top: var(--border); }
+  .rules li { padding: 1rem 0; border-bottom: var(--border); display: flex; gap: 1.2rem; }
+  .rules .k {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.01em; font-size: 1.35rem; line-height: 1;
+    flex-shrink: 0; width: 11rem;
+  }
+  .rules .k span { text-decoration: underline wavy var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+  .rules .v { font-size: 0.96rem; color: var(--muted); }
+
+  /* ---- install ---- */
+  .install-step { margin-top: 1.4rem; }
+  .install-step p { font-size: 0.96rem; margin-bottom: 0.6rem; }
+  .install-step > p { color: var(--muted); }
+  .install-step code { font-family: var(--mono); background: var(--paper-2); border: 1px solid var(--ink); padding: 0 0.25rem; color: var(--ink); }
+  .install-step .cmd code { border: none; background: none; padding: 0; }
+  .install-step .cmd { margin-top: 0.55rem; }
+
+  footer { padding: 3rem 0 4rem; font-size: 0.84rem; color: var(--muted); }
+  footer p + p { margin-top: 0.5rem; }
+
+  /* ---- restrained load-in (reduced-motion respected) ---- */
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .rise { opacity: 0; animation: rise 0.6s cubic-bezier(0.2,0.7,0.2,1) forwards; }
+  .d2 { animation-delay: 0.1s; } .d3 { animation-delay: 0.2s; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none !important; opacity: 1 !important; }
+  }
+
+  @media (max-width: 640px) {
+    .skills { grid-template-columns: 1fr; }
+    .rules li { flex-direction: column; gap: 0.35rem; }
+    .rules .k { width: auto; }
+    :root { --shadow: 4px 4px 0 var(--red); }
+  }
+</style>
+</head>
+
+<body>
+<main>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="wordmark rise">red-pen</p>
+    <h1 class="rise d2">A second reader that <mark>will not flatter you.</mark></h1>
+    <p class="lede rise d3">Three composable Claude skills that keep AI-assisted writing honest and yours. Built for resumes, cover letters, portfolio pages, case studies, proposals, and bios.</p>
+    <div class="hero-cta rise d3">
+      <div class="cmd">
+        <code>/plugin marketplace add cabbagecachekid/red-pen</code>
+        <button type="button" data-copy>Copy</button>
+      </div>
+      <a class="gh-link" href="https://github.com/cabbagecachekid/red-pen">View on GitHub</a>
+    </div>
+  </header>
+
+  <!-- THE PROBLEM -->
+  <section>
+    <p class="eyebrow">Why this exists</p>
+    <h2>Small edits inflate quietly.</h2>
+    <p>red-pen came out of a real problem. While refining a resume and portfolio with AI, edits crept in that quietly inflated a claim. "Solo," meaning "I did this project myself," drifted into something like "founded and ran a research program." Plain headers turned into generic filler that could have belonged to anyone.</p>
+    <p class="demo"><s>founded and ran a research program</s> <span class="fix">did this project myself</span></p>
+    <p>Nobody approved those changes. They just accumulated.</p>
+    <p>red-pen is not about hiding that you used AI. It assumes the healthy case: you are collaborating with Claude on your own writing. Its job is to make sure the result still says what you meant and claims only what is true.</p>
+  </section>
+
+  <!-- THE WORKFLOW -->
+  <section id="workflow">
+    <p class="eyebrow">The full review</p>
+    <h2>One review. Six passes.</h2>
+    <p class="lede">The editor's pass: a rigorous second reader that holds your writing to a standard before it goes out. Two passes hand off to the specialist skills; the orchestrator owns the rest.</p>
+    <article class="flow">
+      <h3>full-review</h3>
+      <p class="promise">A before/after diff table with reasoning, and nothing in your file changes until you sign off.</p>
+      <ol class="rail">
+        <li><span class="skill">ai-written-check</span> <span class="does">flags the mechanical tells of machine writing</span></li>
+        <li><span class="does">Operator vs. academic: does the copy position you as the person who shipped it</span></li>
+        <li><span class="does">Honesty and overclaim: the anti-inflation pass, the heart of it, never upgrades a claim's scope</span></li>
+        <li><span class="skill">cringe-check</span> <span class="does">audits tone and positioning</span></li>
+        <li><span class="does">Voice register: one register per paragraph, no concrete-to-abstract swerve</span></li>
+        <li><span class="does">Fact verification: a source for every checkable claim, unsourced ones flagged</span></li>
+        <li class="gate"><span class="does">You sign off on the diff table. Nothing changes until you do.</span></li>
+      </ol>
+      <p class="why">Passes one and four hand off to the two specialist skills; full-review owns the other four. Install one skill or all three: full-review falls back to built-in notes when a specialist is not present.</p>
+      <p class="say-label">Say this to Claude</p>
+      <div class="cmd cmd--prose"><code>Run a full review on my cover letter before I send it to a hiring manager.</code><button type="button" data-copy>Copy</button></div>
+    </article>
+  </section>
+
+  <!-- THE SKILLS -->
+  <section>
+    <p class="eyebrow">The skills</p>
+    <h2>Two specialists and an orchestrator.</h2>
+    <div class="skills">
+      <div class="skill-card lead">
+        <h3>full-review</h3>
+        <p>The orchestrator for high-stakes copy. Six passes, a before/after diff table, and nothing changes until you sign off. It delegates the AI-tells and tone passes to the specialists below and owns the honesty, positioning, register, and fact passes itself.</p>
+        <span class="say">&ldquo;Review my cover letter.&rdquo;</span>
+      </div>
+      <div class="skill-card">
+        <h3>ai-written-check</h3>
+        <p>Flags the mechanical tells of machine writing, from em dashes to engineered cadence, each with a concrete rewrite.</p>
+        <span class="say">&ldquo;Does this sound like AI?&rdquo;</span>
+      </div>
+      <div class="skill-card">
+        <h3>cringe-check</h3>
+        <p>Audits tone and positioning: solo-hero framing, parroting the job description, overclaiming authority.</p>
+        <span class="say">&ldquo;Does this sound cocky?&rdquo;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROUND RULES -->
+  <section>
+    <p class="eyebrow">The contract</p>
+    <h2>What it will and will not do.</h2>
+    <ul class="rules">
+      <li><span class="k"><span>Sign-off first</span></span><span class="v">Review proposes; you dispose. Nothing in your file changes until you say so.</span></li>
+      <li><span class="k"><span>Never inflate</span></span><span class="v">The anti-inflation pass never quietly upgrades the scope of a claim. If an edit would make a claim bigger than the truth, it stops and asks.</span></li>
+      <li><span class="k"><span>Preserve voice</span></span><span class="v">A rough, specific sentence beats a smooth, generic one. It subtracts noise; it does not add polish-paste.</span></li>
+      <li><span class="k"><span>Report the gaps</span></span><span class="v">Every review names which passes ran, what was left out, and which facts need a source before you send.</span></li>
+    </ul>
+  </section>
+
+  <!-- INSTALL -->
+  <section>
+    <p class="eyebrow">Free, MIT-licensed</p>
+    <h2>Install in one command.</h2>
+    <div class="install-step">
+      <p>In Claude Code, add the marketplace and install the pack:</p>
+      <div class="cmd"><code>/plugin marketplace add cabbagecachekid/red-pen</code><button type="button" data-copy>Copy</button></div>
+      <div class="cmd"><code>/plugin install red-pen@red-pen</code><button type="button" data-copy>Copy</button></div>
+    </div>
+    <div class="install-step">
+      <p>Prefer just one skill? Each folder under <code>skills/</code> stands alone. Copy it into <code>~/.claude/skills/</code>, or upload it as a skill on claude.ai. <code>full-review</code> falls back to built-in notes when the specialists are not installed.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>MIT license &middot; <a href="https://github.com/cabbagecachekid/red-pen">Source on GitHub</a> &middot; By <a href="https://github.com/cabbagecachekid">cabbagecachekid</a></p>
+    <p>No analytics, no trackers, no signup. It is a static page about free software.</p>
+  </footer>
+
+</main>
+
+<script>
+  // copy buttons: clipboard API with an execCommand fallback, no dependencies
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.parentElement.querySelector("code").textContent;
+      function done(ok) {
+        btn.textContent = ok ? "Copied" : "Press ⌘C";
+        btn.setAttribute("data-state", ok ? "ok" : "err");
+        if (!ok) {
+          var range = document.createRange();
+          range.selectNodeContents(btn.parentElement.querySelector("code"));
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        setTimeout(function () { btn.textContent = "Copy"; btn.removeAttribute("data-state"); }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); },
+          function () { done(legacyCopy(text)); });
+      } else {
+        done(legacyCopy(text));
+      }
+    });
+  });
+</script>
+</body>
+</html>
