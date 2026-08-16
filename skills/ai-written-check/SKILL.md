@@ -1,6 +1,6 @@
 ---
 name: ai-written-check
-description: Detects the mechanical tells that make professional prose read as AI-generated — em dashes, triple-list anaphora, "not X but Y" antithetical pairs, spatial and economic metaphors for abstract ideas, "architect" as a verb, engineered sentence cadence, mid-paragraph register swerves, builder/startup slang, and unfalsifiable universal claims ("everyone", "across the board"). Use when reviewing or editing a resume, cover letter, portfolio page, case study, proposal, bio, or any human-facing copy, or when the user asks for an "AI-written check", "AI tells", says copy "sounds like AI", or asks to make writing sound less generated.
+description: Detects the mechanical tells that make professional prose read as AI-generated — em dashes, triple-list anaphora, "not X but Y" antithetical pairs, spatial and economic metaphors for abstract ideas, "architect" as a verb, engineered sentence cadence, mid-paragraph register swerves, builder/startup slang, sincerity adverbs ("honestly", "quietly"), and unfalsifiable universal claims ("everyone", "across the board"). Use when reviewing or editing a resume, cover letter, portfolio page, case study, proposal, bio, or any human-facing copy, or when the user asks for an "AI-written check", "AI tells", says copy "sounds like AI", or asks to make writing sound less generated.
 ---
 
 # AI-Written Check
@@ -34,6 +34,7 @@ Never flag without a rewrite. The point is to fix the prose, not to label it.
 | **Voice-register swerve** | Flag any paragraph that opens concrete-and-human and pivots to abstract industry-speak. | Stay in one register; the swerve is the tell. |
 | **Builder/startup subculture slang** ("vibe coding", "shipping", "hot takes", "cracked at") | Flag each in formal copy. | A neutral substance-equivalent term. |
 | **Unfalsifiable universal claims** ("everyone", "all", "every", "universally", "across the board") | Question each. | Scope it to the specific people/context actually observed. "Affects everyone" is itself an AI-pitch tell. |
+| **Sincerity adverbs** ("honestly", "quietly", "genuinely", "truly", "frankly" as dressing) | Flag each. | Delete the adverb; if the sentence loses nothing, it was a tell. |
 | **Generic placeholder / template copy** (fill-in-the-blank headers, "Welcome to my portfolio", "I'm passionate about X", boilerplate section intros that could belong to anyone) | Flag each. | Replace with something specific and true to the author — their actual words, project, or point of view. Filler that "isn't the vibe" is a tell that the line was generated, not authored. |
 
 ## Why these matter
