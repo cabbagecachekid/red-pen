@@ -9,6 +9,13 @@ Audit copy for the positioning moves that make a smart, qualified author look co
 
 The frame to hold: the strongest copy reads as a **generous collaborator who is genuinely good**, not a solo hero or a sage on a mountain. Most cringe comes from the author accidentally instrumentalizing other people or claiming more than they own.
 
+## Register first
+
+Resolve the register the same way `full-review` does (`.red-pen/profile.md` → ask once → default `job-seeker`). Then read the register's `polarity.tone`:
+
+- **`overclaim`** (job-seeker): run the six dimensions below as written — the defect is swagger.
+- **`soften`** (publication): run them **inverted** — the defect is mush. For each dimension ask "did the edit make the author claim, feel, or say *less* than they wrote?" and use the register's `## Distortion watchlist` (hedges, de-cursing, expansion, formalization, apology framing, thesis dilution) as the hit list. Dimensions the register marks as not applicable are reported as "n/a for this register."
+
 ## How to run it
 
 Walk the six dimensions below. For each hit, output: the **dimension name**, the **offending line quoted**, and a **collaborator-voice rewrite**. Be specific — a real rewrite, not "soften this."
