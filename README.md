@@ -84,6 +84,20 @@ Once installed, no special command is needed — just ask in plain language:
 
 `full-review` will pull in `ai-written-check` and `cringe-check` automatically when all three are installed, and falls back to its own reference notes if they aren't.
 
+## Registers and profiles (v0.2)
+
+The three skills are one **mechanism** — sign-off first, never inflate *or deflate*, preserve voice, report the gaps — and the mechanism is register-independent. What differs per kind of artifact is the **calibration**: which way AI editing damages it. Résumés inflate. Editorials soften. So the calibration lives in config, not code:
+
+| Layer | File | Who writes it |
+|---|---|---|
+| Mechanism | the three `SKILL.md` files | the pack |
+| Register pack | `registers/<name>.md` — polarity per pass, watchlist, tell extensions, needs-no-source claims | the pack ships `job-seeker` and `publication`; add your own |
+| Profile | `.red-pen/profile.md` in your writing folder, from `profile.template.md` — voice test, never-phrases, scope guard, identity rules; names its register | you |
+
+No profile, no answer to "which register?" → `job-seeker`, exactly the original behavior.
+
+The `publication` register and `examples/profile-little-bird.md` are ported, with permission and thanks, from **little-bird-final-pass** by Bird ([alittlebirdseyeview.com](https://www.alittlebirdseyeview.com)), MIT — the fork that showed the split was real: same passes, opposite polarity.
+
 ## Repository layout
 
 ```
@@ -92,6 +106,10 @@ skills/
   ai-written-check/  SKILL.md + references/TELLS.md
   cringe-check/      SKILL.md + references/POSITIONING.md
   full-review/       SKILL.md + references/PASSES.md
+registers/           job-seeker.md, publication.md — calibration per artifact type
+profile.template.md  copy to .red-pen/profile.md where you write
+examples/            profile-little-bird.md — a worked publication profile
+tests/               fixtures + KNOWN-ANSWERS.md — the polarity-flip proof
 ```
 
 ## License
