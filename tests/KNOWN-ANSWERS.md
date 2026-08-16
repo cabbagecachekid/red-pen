@@ -9,3 +9,7 @@
 | 5 | none (default) | resume-overclaim | same findings as row 1 — regression: default == today's behavior | — |
 
 Baseline: before the split, run current full-review on both fixtures and record what it flags. Row 2 is expected to be *silent* on the softenings today too; row 3 must go from silent → flagged. If row 3 was already flagged before the split, the fixture cannot reach the broken state — widen it, don't clear the code.
+
+## Baseline recorded 2026-08-16 (pre-split, commit 0a0f9b2)
+- resume-overclaim: Pass 3 flagged "Led … end to end" (scope upgrade) and "reshaped the roadmap" (unsourced); Pass 4 solo-hero hit. → row 1 baseline established.
+- editorial-softened: NO pass flagged the hedge, the de-cursing, or the false-balance closer. → row 3 broken state confirmed reachable.
