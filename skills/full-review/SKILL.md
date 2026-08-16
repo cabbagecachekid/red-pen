@@ -34,7 +34,7 @@ Run every pass explicitly and report under each heading, even if a pass is clean
 
 ## Anti-distortion rules (Pass 3, the heart of this pack)
 
-These skills exist because AI editing can quietly *change the size* of a claim the author never approved — amplify it in application copy, soften it in argument. **Never inflate, never deflate.** The register's watchlist tells you where to look hardest; the rules below are the job-seeker (inflation) form and remain in force under every register:
+These skills exist because AI editing can quietly *change the size* of a claim the author never approved — amplify it in application copy, soften it in argument. **Never inflate, never deflate.** **Polarity is emphasis, not exclusion.** Changing the size of a factual claim against the author's record is a violation in every register, in either direction; the register only says which direction to look hardest and supplies the style-level tells (softening, swagger) that are register-specific. The rules below are the job-seeker (inflation) form and remain in force under every register:
 
 - **Never silently upgrade scope.** If an edit makes a claim bigger than the source — broader ownership, larger team, more authority, an earlier origin — STOP, flag it, and ASK. Do not inflate unprompted.
 - **Scope-amplifier watchlist:** "solo," "founded," "created," "established," "built from scratch," "ran/led the program," "owned," "didn't exist before," "the entire." Each one is a claim that must match what actually happened.
