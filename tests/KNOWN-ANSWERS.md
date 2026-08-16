@@ -13,3 +13,14 @@ Baseline: before the split, run current full-review on both fixtures and record 
 ## Baseline recorded 2026-08-16 (pre-split, commit 0a0f9b2)
 - resume-overclaim: Pass 3 flagged "Led … end to end" (scope upgrade) and "reshaped the roadmap" (unsourced); Pass 4 solo-hero hit. → row 1 baseline established.
 - editorial-softened: NO pass flagged the hedge, the de-cursing, or the false-balance closer. → row 3 broken state confirmed reachable.
+
+## Post-split run 2026-08-16 (commit f212b33+, three subagent runs)
+- Row 1 PASS — job-seeker: "Led … end to end" flagged as scope upgrade (Pass 3, 4, 6); "reshaped the roadmap" unsourced.
+- Row 2 PASS — job-seeker: none of the three softenings flagged. Tester noted "never deflate" has no operational hook in job-seeker (no deflation watchlist) — deliberate, see OPEN below.
+- Row 3 PASS — publication + Little Bird profile: hedge (Pass 3), de-cursing (Pass 3/5), false-balance closer (Pass 1 extension + Pass 3) all flagged; Pass 6 kept the thesis exempt, flagged the load-bearing fact.
+- Row 4 (with profile) — scope guard fired ("factual-only → misfiled, stop"); silence achieved by the wrong path. Re-ran without profile.
+- Row 4 (no profile) **FAILED AS WRITTEN** — publication DID flag "Led … end to end" via full-review's base Pass 3 rules ("remain in force under every register") + the register's "Never inflate either" bullet.
+- Row 5 PASS — default resolution == job-seeker, findings identical to row 1.
+
+## OPEN — spec question surfaced by row 4
+Polarity as implemented is *emphasis*, not *exclusion*: record inflation is caught under every register; softening is caught only where a register supplies the watchlist. Either (a) rewrite row 4's expectation to "flags the inflation" and state the principle in SKILL.md — record fidelity is register-independent both ways, style-level softening/swagger is register-specific — or (b) make polarity exclusive and remove the base rules from publication. Caitlin decides.
