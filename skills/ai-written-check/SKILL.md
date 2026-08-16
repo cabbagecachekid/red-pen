@@ -47,3 +47,7 @@ For the full catalog with worked before/after examples and edge cases, see `refe
 - It does not judge tone, arrogance, or positioning — use `cringe-check`.
 - It does not verify facts or claims — that belongs to a full review (`full-review`).
 - It does not rewrite wholesale. It flags and proposes; the author decides.
+
+## Register extensions
+
+`references/TELLS.md` is the core catalog for every register. If a register is resolved (see `full-review`: `.red-pen/profile.md` → ask once → default `job-seeker`), also apply the tells under its `## AI-tell extensions` — for `publication` that adds engineered contrast constructions, stock AI vocabulary, false-balance closers, symmetrical paragraph engineering, and restating summary paragraphs. Report core and extension hits under one heading; note which register supplied each extension.
