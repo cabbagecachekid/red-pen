@@ -16,6 +16,7 @@ Does the copy position the author as someone who *ships* or someone who *observe
 - **Scope-amplifier watchlist:** "solo," "founded," "created," "established," "built from scratch," "ran/led the program," "owned," "didn't exist before," "the entire." Each one is a claim that must match what actually happened.
 - **Read "solo" conservatively.** "Solo" usually means *individual contribution on a specific project*, not *sole founder of a function or program*. Never expand it past per-project scope without explicit confirmation.
 - **Match the record, not the memory.** When raw material already sounds inflated, treat that as a question to verify, not a fact to polish.
+- **Deflation is a distortion too.** If the copy or an edit makes a claim *smaller* than the record — "helped with" where the source says owned, "contributed to" where the source says led, a team-sized credit for solo work — flag it the same way. Under-claiming is rarer under AI editing than inflation, so it gets one bullet, not a watchlist; the check is the same: does the claim match what actually happened.
 
 ## AI-tell extensions
 None. `ai-written-check`'s core catalog (`references/TELLS.md`) is the whole list for this register.
