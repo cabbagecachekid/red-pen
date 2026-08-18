@@ -25,5 +25,5 @@ Baseline: before the split, run current full-review on both fixtures and record 
 ## RESOLVED 2026-08-16 — row 4 was mis-specified, not the code
 Polarity is *emphasis*, not *exclusion* (Caitlin's ruling): record inflation is caught under every register; softening and swagger are caught only where a register supplies the watchlist. Row 4's original "must NOT flag the scope upgrade" expectation was wrong — the fixture's overclaim is a record-fidelity defect and is register-independent. Row 4 rewritten above; the principle is stated in full-review's SKILL.md (commit 04c1899). Option (b), making polarity exclusive, was not taken.
 
-## OPEN — job-seeker deflation watchlist (Caitlin has not ruled)
-Row 2's tester noted that job-seeker's "never deflate" has no operational hook: the register has no watchlist for a résumé that under-claims the record. Adding one is a one-line change to `registers/job-seeker.md`. Not decided; ask before adding.
+## RESOLVED 2026-08-18 — job-seeker deflation bullet added
+Row 2's tester noted that job-seeker's "never deflate" had no operational hook. Caitlin ruled: add it. `registers/job-seeker.md` now carries one deflation bullet in the distortion watchlist (a claim made smaller than the record is flagged the same way as one made bigger). No fixture change; the two existing fixtures do not plant a deflation.
