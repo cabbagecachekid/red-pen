@@ -1,12 +1,12 @@
 # HANDOFF — red-pen config split (branch `config-split`)
 
-Written 2026-08-16. Read this first if picking up cold.
+Written 2026-08-16; state rewritten 2026-08-18. Read this first if picking up cold.
 
 ## State in one sentence
-The three-layer split (mechanism / register / profile) is built and committed on local branch `config-split` (9 commits ahead of main); 4 of 5 known-answer tests pass, the 5th was mis-specified and the decision to fix the spec (not the code) is made; **nothing is pushed to GitHub** — Caitlin's rule: no push, no PR until she has reviewed and says "open it."
+The three-layer split (mechanism / register / profile) is built and committed on local branch `config-split` (11 commits ahead of `origin/main`); all 5 known-answer rows now pass — row 4 was mis-specified and has been rewritten to the ruled expectation (polarity is emphasis); **nothing is pushed to GitHub** — Caitlin's rule: no push, no PR until she has reviewed and says "open it."
 
 ## Where things are
-- Repo: `~/Projects/skills/public/red-pen/`, branch `config-split`. Main is untouched at `c5c6e22`.
+- Repo: `~/Projects/skills/public/red-pen/`, branch `config-split`. `origin/main` moved to `5067dc7` on 2026-08-16 (PR #2, og-image, merged on GitHub); local `main` was fast-forwarded to match on 2026-08-18. `config-split` branched from `c5c6e22`, which is on origin/main's history, so it merges clean.
 - Spec: `docs/superpowers/specs/2026-08-15-config-split-design.md`
 - Tests: `tests/fixtures/{resume-overclaim,editorial-softened}.md`, `tests/KNOWN-ANSWERS.md` (baseline + post-split results recorded)
 - Registers: `registers/job-seeker.md`, `registers/publication.md`
@@ -24,9 +24,9 @@ The three-layer split (mechanism / register / profile) is built and committed on
 - Work in tiny turns; she is watching usage.
 
 ## Remaining steps (tiny, in order)
-1. `tests/KNOWN-ANSWERS.md`: rewrite row 4 expected → "flags the inflation (base rules)"; delete the OPEN section, note it was resolved = emphasis.
-2. Spec: same one-line fix to row 4 in the Testing section.
-3. Optional one-liner: job-seeker watchlist gets a deflation bullet (résumé that under-claims the record) — Caitlin hasn't ruled; ask.
+1. ~~`tests/KNOWN-ANSWERS.md`: rewrite row 4~~ DONE 2026-08-18 — row 4 expects the flag; OPEN section replaced by RESOLVED.
+2. ~~Spec: same one-line fix to row 4~~ DONE 2026-08-18.
+3. Optional one-liner: job-seeker watchlist gets a deflation bullet (résumé that under-claims the record) — Caitlin hasn't ruled; ask. Recorded as OPEN at the bottom of KNOWN-ANSWERS.md.
 4. Caitlin reviews the diff (`git diff main..config-split --stat`, then the SKILL.md files).
 5. Only on her word: push branch, open PR. Then landing page reorder (red-pen leads) as a separate task.
 

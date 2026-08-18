@@ -41,7 +41,7 @@ Fixtures in `tests/fixtures/`:
 - `editorial-softened.md` — one planted hedge ("arguably") + one de-cursed word + one false-balance closer.
 Known answers:
 - job-seeker on resume → flags the overclaim. job-seeker on editorial → does NOT flag the hedge (wrong polarity).
-- publication on editorial → flags all three plants. publication on resume → does NOT flag the overclaim.
+- publication on editorial → flags all three plants. publication on resume → STILL flags the overclaim (record fidelity is register-independent; polarity is emphasis, not exclusion).
 - no profile, no register → identical output to current version on the resume fixture (regression).
 Pass criterion: all five outcomes observed by running the skills, not by reading them.
 
