@@ -1,6 +1,6 @@
 {
   "name": "red-pen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Three composable skills that keep AI-assisted writing honest and yours: an AI-written check (mechanical tells), a cringe check (tone and positioning), and a full-review orchestrator that runs both plus anti-inflation and fact passes.",
   "author": {
     "name": "Caitlin Nielson"

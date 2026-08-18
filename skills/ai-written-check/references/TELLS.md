@@ -124,6 +124,17 @@ The test: would a domain expert who read the actual data nod, or wince? Universa
 
 ---
 
+## 13. Sincerity adverbs: "honestly," "quietly"
+
+"Honestly," "quietly," and their kin ("genuinely," "truly," "frankly") as sentence dressing. A model reaches for them to *perform* candor or understatement — "honestly, the best part was…", "a quietly powerful feature", "it quietly does the work." A human who is being honest doesn't announce it; a thing that is quiet doesn't need the adverb.
+
+> Before: "Honestly, this was the part that quietly changed how the team worked."
+> After: "This changed how the team worked."
+
+The test: delete the adverb. If the sentence loses nothing, it was a tell.
+
+---
+
 ## Calibration notes
 
 - **Don't over-correct.** A document with zero em dashes, zero contrast pairs, and uniformly medium sentences reads as flattened — another kind of tell. The goal is human density, not zero.

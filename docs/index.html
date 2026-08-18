@@ -204,6 +204,7 @@
   }
   .rules .k span { text-decoration: underline wavy var(--red); text-decoration-thickness: 2px; text-underline-offset: 5px; }
   .rules .v { font-size: 0.96rem; color: var(--muted); }
+  .credit { margin-top: 1.2rem; font-size: 0.96rem; }
 
   /* ---- install ---- */
   .install-step { margin-top: 1.4rem; }
@@ -241,7 +242,7 @@
   <header class="hero">
     <p class="wordmark rise">red-pen</p>
     <h1 class="rise d2">A second reader that <mark>will not flatter you.</mark></h1>
-    <p class="lede rise d3">Three composable Claude skills that keep AI-assisted writing honest and yours. Built for resumes, cover letters, portfolio pages, case studies, proposals, and bios.</p>
+    <p class="lede rise d3">Three composable Claude skills that keep AI-assisted writing honest and yours. Built for resumes, cover letters, portfolio pages, case studies, proposals, and bios; and, since v0.2, calibrated by register for editorials and essays too.</p>
     <div class="hero-cta rise d3">
       <div class="cmd">
         <code>/plugin marketplace add cabbagecachekid/red-pen</code>
@@ -313,10 +314,23 @@
     <h2>What it will and will not do.</h2>
     <ul class="rules">
       <li><span class="k"><span>Sign-off first</span></span><span class="v">Review proposes; you dispose. Nothing in your file changes until you say so.</span></li>
-      <li><span class="k"><span>Never inflate</span></span><span class="v">The anti-inflation pass never quietly upgrades the scope of a claim. If an edit would make a claim bigger than the truth, it stops and asks.</span></li>
+      <li><span class="k"><span>Never inflate, never deflate</span></span><span class="v">The record-fidelity pass never quietly changes the size of a claim. If an edit would make a claim bigger than the truth, or smaller, it stops and asks. This holds under every register.</span></li>
       <li><span class="k"><span>Preserve voice</span></span><span class="v">A rough, specific sentence beats a smooth, generic one. It subtracts noise; it does not add polish-paste.</span></li>
       <li><span class="k"><span>Report the gaps</span></span><span class="v">Every review names which passes ran, what was left out, and which facts need a source before you send.</span></li>
     </ul>
+  </section>
+
+  <!-- REGISTERS -->
+  <section id="registers">
+    <p class="eyebrow">New in v0.2</p>
+    <h2>One mechanism, calibrated per kind of writing.</h2>
+    <p class="lede">Résumés inflate under AI editing. Editorials soften. The passes are the same; the direction of damage is not. So the calibration lives in two small config files, not in the skills.</p>
+    <ul class="rules">
+      <li><span class="k"><span>Register</span></span><span class="v"><code>registers/&lt;name&gt;.md</code> says which way this kind of artifact drifts and what to watch for. The pack ships <code>job-seeker</code> (the original calibration, and the default) and <code>publication</code> (hedges, de-cursed words, false-balance closers). Add your own.</span></li>
+      <li><span class="k"><span>Profile</span></span><span class="v"><code>.red-pen/profile.md</code> in the folder where you write, from <code>profile.template.md</code>: your voice test, your never-phrases, your scope guard, and which register to use. Yours; not shipped.</span></li>
+      <li><span class="k"><span>Default</span></span><span class="v">No profile, no register named: <code>job-seeker</code>, exactly the v0.1 behaviour. Nothing you already rely on changes.</span></li>
+    </ul>
+    <p class="credit">The <code>publication</code> register and its example profile are ported, with permission and thanks, from <em>little-bird-final-pass</em> by Bird (<a href="https://www.alittlebirdseyeview.com">alittlebirdseyeview.com</a>), MIT: the fork that showed the split was real. Same passes, opposite polarity.</p>
   </section>
 
   <!-- INSTALL -->
