@@ -2,7 +2,7 @@
 
 Three composable [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) that keep AI-assisted writing **honest and yours**: for resumes, cover letters, portfolio pages, case studies, proposals, and bios.
 
-They came out of a real problem: while refining a resume and portfolio *with* AI, edits crept in that quietly inflated a claim. "Solo" (meant as *I did this project myself*) drifted into something like *founded and ran a research program*, alongside generic placeholder headers that weren't the author's voice at all. No one approved those changes; they just accumulated.
+They came out of a real problem: while refining a resume and portfolio *with* AI, edits crept in that silently inflated a claim. "Solo" (meant as *I did this project myself*) drifted into something like *founded and ran a research program*, alongside generic placeholder headers that weren't the author's voice at all. No one approved those changes; they just accumulated.
 
 `red-pen` does not hide that you used AI. It assumes the healthy case: you're collaborating with Claude to refine, expand, or draft your own writing. Its job is to make sure the result still **says what you meant and claims only what's true.**
 
@@ -12,7 +12,7 @@ They came out of a real problem: while refining a resume and portfolio *with* AI
 |-------|--------------|------------------------|
 | **ai-written-check** | Flags the *mechanical* tells that make prose read as machine-written: em dashes, triple-lists, "not X but Y" pairs, spatial/cost metaphors, "architect" as a verb, engineered cadence, register swerves, builder slang, universal claims, and generic placeholder copy. Each flag comes with a concrete rewrite. | "AI-written check", "does this sound like AI?", "make this sound like me" |
 | **cringe-check** | Audits *tone and positioning*: solo-hero framing, positioning-against others, parroting the job description, prescribing a client's reality, undermining bespoke work, and overclaiming authority or flattening scale. | "cringe check", "does this sound cocky / try-hard?" |
-| **full-review** | The orchestrator. Runs a six-pass review, **delegating** the AI-tells and tone passes to the two checks above and owning the rest: the register pass, honesty and distortion (a claim made bigger or smaller than the record), voice register, and fact verification. Presents a before/after diff table, lists what it deliberately kept out, and waits for your explicit sign-off before changing anything. Use it at any stage, not just the end. | "review my copy", "do a full review", "polish this for hiring managers" |
+| **full-review** | The orchestrator. Runs a six-pass review, **delegating** the AI-tells and tone passes to the two checks above and owning the rest: the register pass, honesty and distortion (a claim made bigger or smaller than the record), voice register, and fact verification. Presents a before/after diff table, lists what it deliberately kept out, and waits for your explicit sign-off before changing anything. Use it at any stage, from first expansion to final pass. | "review my copy", "do a full review", "polish this for hiring managers" |
 
 The three are independent. Install one, two, or all three. `full-review` *delegates* to the other two when they're present (no duplicated rules) and falls back to brief reference notes when they aren't.
 
