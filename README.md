@@ -2,7 +2,7 @@
 
 Three composable [Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) that keep AI-assisted writing **honest and yours**: for resumes, cover letters, portfolio pages, case studies, proposals, and bios.
 
-They came out of a real problem: while refining a resume and portfolio *with* AI, edits crept in that quietly inflated a claim. "Solo" (meant as *I did this project myself*) drifted into something like *founded and ran a research program*, alongside generic placeholder headers that weren't the author's voice at all. No one approved those changes; they just accumulated.
+They came out of a real problem: while refining a resume and portfolio *with* AI, edits crept in that silently inflated a claim. "Solo" (meant as *I did this project myself*) drifted into something like *founded and ran a research program*, alongside generic placeholder headers that weren't the author's voice at all. No one approved those changes; they just accumulated.
 
 `red-pen` does not hide that you used AI. It assumes the healthy case: you're collaborating with Claude to refine, expand, or draft your own writing. Its job is to make sure the result still **says what you meant and claims only what's true.**
 
