@@ -1,6 +1,6 @@
 ---
 name: full-review
-description: Runs a structured multi-pass review of human-facing professional copy and presents findings as a before/after diff table with reasoning, lists what was deliberately left out, and waits for explicit sign-off before changing anything. The passes are AI tells, a register-supplied positioning pass, honesty and distortion (catching claims silently inflated OR softened), tone and positioning, voice register, and fact verification. Calibration comes from a register file (job-seeker by default; publication included) and an optional one-page profile, so the same review serves résumés, editorials, grants, or house style. Use at any stage of refining or expanding copy with AI — not just at the end — when reviewing or workshopping a resume, cover letter, portfolio page, case study, proposal, or bio, when the user asks to "review my copy", "do a full review", "run the full pass", or polish writing for hiring managers or clients.
+description: Runs a structured multi-pass review of human-facing professional copy and presents findings as a before/after diff table with reasoning, lists what was deliberately left out, and waits for explicit sign-off before changing anything. The passes are AI tells, a register-supplied positioning pass, honesty and distortion (catching claims silently inflated OR softened), tone and positioning, voice register, and fact verification. Calibration comes from a register file (job-seeker by default; publication included) and an optional one-page profile, so the same review serves résumés, editorials, or a house style; add a register for anything else. Use at any stage of refining or expanding copy with AI — not just at the end — when reviewing or workshopping a resume, cover letter, portfolio page, case study, proposal, or bio, when the user asks to "review my copy", "do a full review", "run the full pass", or polish writing for hiring managers or clients.
 ---
 
 # Full Review
@@ -15,9 +15,10 @@ The first draft of any change is the **starting position for a conversation, not
 
 The mechanism below is register-independent; the *calibration* is not. Resolve it in this order, once per review:
 
-1. If `.red-pen/profile.md` exists in the working directory, load it. Its frontmatter names a `register:`; load `registers/<that>.md` from this pack. The profile's voice test, never-phrases, scope guard, and identity rules bind every pass.
+1. If `.red-pen/profile.md` exists in the working directory, load it. Its frontmatter names a `register:`; load `registers/<that>.md` from the pack root (two directories above this skill's folder in the plugin or cloned repo). The profile's voice test, never-phrases, scope guard, and identity rules bind every pass.
 2. Otherwise ask once: "Which register — `job-seeker`, `publication`, or a path to a profile?" Do not ask again in the same review.
 3. If the author declines or the question can't be asked, run **`job-seeker` with no profile** — the pack's original behavior.
+4. If the register file itself cannot be found (this skill was copied standalone, without `registers/`), run the job-seeker rules that are inline below and say so in the first line of the report; do not invent a register.
 
 State the resolved register in the first line of the report. If the profile has a **scope guard** and the draft falls outside it, say so and stop; do not drag the draft into a register it doesn't belong to.
 
