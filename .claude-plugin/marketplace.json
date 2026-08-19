@@ -7,7 +7,7 @@
     {
       "name": "red-pen",
       "source": "./",
-      "description": "An AI-written check, a cringe check, and a full-review orchestrator that keep AI-assisted writing honest and in your voice.",
+      "description": "An AI-written check, a cringe check, and a full-review orchestrator that keep AI-assisted writing honest and in your voice; calibrated by register (job-seeker, publication) and an optional per-writer profile.",
       "version": "0.2.0"
     }
   ]
