@@ -12,13 +12,13 @@ They came out of a real problem: while refining a resume and portfolio *with* AI
 |-------|--------------|------------------------|
 | **ai-written-check** | Flags the *mechanical* tells that make prose read as machine-written: em dashes, triple-lists, "not X but Y" pairs, spatial/cost metaphors, "architect" as a verb, engineered cadence, register swerves, builder slang, universal claims, and generic placeholder copy. Each flag comes with a concrete rewrite. | "AI-written check", "does this sound like AI?", "make this sound like me" |
 | **cringe-check** | Audits *tone and positioning*: solo-hero framing, positioning-against others, parroting the job description, prescribing a client's reality, undermining bespoke work, and overclaiming authority or flattening scale. | "cringe check", "does this sound cocky / try-hard?" |
-| **full-review** | The orchestrator. Runs a six-pass review, **delegating** the AI-tells and tone passes to the two checks above and owning the rest: operator-vs-academic, honesty/anti-inflation, voice register, and fact verification. Presents a before/after diff table, lists what it deliberately kept out, and waits for your explicit sign-off before changing anything. Use it at any stage, not just the end. | "review my copy", "do a full review", "polish this for hiring managers" |
+| **full-review** | The orchestrator. Runs a six-pass review, **delegating** the AI-tells and tone passes to the two checks above and owning the rest: the register pass, honesty and distortion (a claim made bigger or smaller than the record), voice register, and fact verification. Presents a before/after diff table, lists what it deliberately kept out, and waits for your explicit sign-off before changing anything. Use it at any stage, not just the end. | "review my copy", "do a full review", "polish this for hiring managers" |
 
 The three are independent. Install one, two, or all three. `full-review` *delegates* to the other two when they're present (no duplicated rules) and falls back to brief reference notes when they aren't.
 
 ## Why "red-pen"
 
-It's the editor's pass: a rigorous second reader that holds your writing to a standard before it goes out. The anti-inflation pass is the heart of it. It **never silently upgrades the scope of a claim.** If an edit makes something bigger than the truth (broader ownership, a larger team, an earlier origin, a founding role you didn't have), it stops and *asks* rather than polishing the inflation into a "fact."
+It's the editor's pass: a rigorous second reader that holds your writing to a standard before it goes out. The record-fidelity pass is the heart of it. It **never silently changes the size of a claim.** If an edit makes something bigger than the truth (broader ownership, a larger team, an earlier origin, a founding role you didn't have), or smaller than it, it stops and *asks* rather than polishing the distortion into a "fact."
 
 ## Design principles
 
@@ -61,6 +61,8 @@ cp -r skills/full-review      ~/.claude/skills/
 
 Verify with `/skills`; the three should appear in the list.
 
+Standalone copies run the `job-seeker` register (the v0.1 behaviour). Registers and profiles need the plugin install or the cloned repo.
+
 ### Claude Desktop / claude.ai
 
 Each skill uploads as its own zipped folder (requires code execution; available on Pro, Max, Team, and Enterprise plans).
@@ -73,6 +75,8 @@ Each skill uploads as its own zipped folder (requires code execution; available 
    ```
 2. In Claude Desktop, go to **Settings → Capabilities → Skills** and upload each `.zip` separately.
 3. Start a chat and ask for a "cringe check" or "AI-written check". The skill triggers automatically.
+
+Standalone copies run the `job-seeker` register (the v0.1 behaviour). Registers and profiles need the plugin install or the cloned repo.
 
 ### Using the skills
 
