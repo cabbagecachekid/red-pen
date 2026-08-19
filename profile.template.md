@@ -1,7 +1,7 @@
 ---
 # Copy this file to .red-pen/profile.md in the folder where you write. One page. Every field optional except register.
 register: job-seeker        # job-seeker | publication | <name of a file in registers/>
-name:                        # what to call this artifact/author in reports (e.g. "Little Bird", "Caitlin's résumé")
+name:                        # what to call this artifact/author in reports (e.g. "Little Bird", "my résumé")
 ---
 
 # Profile: <name>
