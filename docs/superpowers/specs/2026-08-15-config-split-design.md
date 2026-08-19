@@ -1,7 +1,7 @@
 # red-pen config split — design (2026-08-15)
 
-Status: DRAFT for Caitlin's review. Local only; nothing pushed until fixtures pass.
-Origin: feedback + fork from Bird (see ~/Inbox/red-pen-feedback_2026-08-15_Bird.md). Fork is MIT, permission granted in writing.
+Status: IMPLEMENTED 2026-08-18 (PR #3). Kept as the design record.
+Origin: feedback + fork (little-bird-final-pass) from Bird, MIT.
 
 ## Goal
 Split red-pen into three layers so the same review mechanism serves any artifact:
@@ -27,7 +27,7 @@ Ship: `job-seeker.md` (extracted verbatim from current SKILL.md/POSITIONING.md t
 
 ## Layer 3 — profile
 `profile.template.md` at repo root. Frontmatter: `register: <name>`. Sections: voice test (real before/after pairs), never-phrases, register per surface, scope guard (what this artifact refuses to be), identity/masthead rules, source list.
-Examples: `examples/profile-caitlin.md` (scrubbed from personal caitlin-voice; Caitlin reviews before it leaves personal/), `examples/profile-little-bird.md` (from fork, entity section).
+Examples: `examples/profile-little-bird.md` (from the fork, entity section). A second, job-seeker example profile is deferred to a later round.
 
 ## Loading rule
 1. Look for `.red-pen/profile.md` in the working directory. If found, load it and its named register.
