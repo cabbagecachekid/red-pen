@@ -65,7 +65,7 @@ Standalone copies run the `job-seeker` register (the v0.1 behaviour). Registers 
 
 ### Claude Desktop / claude.ai
 
-Each skill uploads as its own zipped folder (requires code execution; available on Pro, Max, Team, and Enterprise plans).
+Each skill uploads as its own zipped folder. Works on every plan, including Free; it just needs code execution turned on (Settings, then Capabilities, then "Code execution and file creation").
 
 1. Clone the repo and zip each skill folder:
    ```bash
